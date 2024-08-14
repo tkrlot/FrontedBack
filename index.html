@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Player</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="player-container">
+        <div id="video-player">
+            <iframe id="video" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div id="controls">
+            <input type="text" id="video-url" placeholder="Enter YouTube video URL" />
+            <button onclick="loadVideo()">Load Video</button>
+            <button onclick="playVideo()">Play</button>
+            <button onclick="pauseVideo()">Pause</button>
+            <button onclick="seekVideo()">Seek</button>
+        </div>
+        <div id="queue">
+            <h3>Video Queue</h3>
+            <ul id="queue-list"></ul>
+        </div>
+    </div>
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

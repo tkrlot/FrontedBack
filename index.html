@@ -1,4 +1,3 @@
-<!--Nav Template Start-->
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
@@ -8,14 +7,18 @@
 <link rel="icon" href="Images/Global/Icon_Tab.webp">
 <link rel="stylesheet" href="GlobalCSS.css">
 <style type="text/css">
+body {
+	background-color: #1a002b; /* Very Dark Purple background */
+	color: #fff; /* White text for general readability */
+}
 .fileInputVisible, .outputButton {
-	background-color: rgba(255, 255, 255, 0.25);
+	background-color: rgba(80, 0, 80, 0.5); /* Dark Purple with more opacity */
 	padding: 28px;
 	color: #fff;
 	font: 28px Arial;
 	font-weight: bold;
 	text-align: center;
-	border: 1px solid #5c5c5c;
+	border: 1px solid #5b003a; /* Slightly darker purple border */
 	border-radius: 8px;
 	cursor: pointer;
 }
@@ -26,46 +29,35 @@
 	font: 18px Arial;
 	font-weight: bold;
 	text-align: center;
-	border: 1px solid #5c5c5c;
+	border: 1px solid #5b003a;
 	border-radius: 8px;
 	cursor: pointer;
 }
 .fileInputVisible:hover, .outputButton:hover {
-	background-color: rgba(255, 255, 255, 0.15);
-	border: 1px solid #c0c0c0;
+	background-color: rgba(120, 30, 120, 0.6); /* Lighter Dark Purple on hover */
+	border: 1px solid #8d004c; /* Lighter border on hover */
 }
 .fileInputVisible:disabled, .outputButton:disabled {
-	background-color: rgba(255, 255, 255, 0.05);
-	border: 1px solid #1a1a1a;
+	background-color: rgba(50, 0, 50, 0.1); /* Very Dark Purple */
+	border: 1px solid #3c002c; /* Very Dark Purple border */
 	cursor: not-allowed;
 }
 .fileInput {
 	display: none;
 }
 .container {
-	background-image: var(--bgImageDark)!important;
-	background-clip: border-box!important;
-	background-origin: padding-box!important;
-	background-attachment: scroll!important;
-	background-repeat: repeat!important;
-	background-size: auto!important;
-	background-position: left top!important;
-	border: 1px solid #5c5c5c;
+	background-color: #2e0032; /* Dark Purple background */
+	border: 1px solid #4b0034;
 	border-radius: 8px;
 	min-width: 800px;
 	width: 50%;
 	height: fit-content;
 	padding-bottom: 50px;
+	color: #fff;
 }
 #themeTextArea {
-	background-image: var(--bgImage)!important;
-	background-clip: border-box!important;
-	background-origin: padding-box!important;
-	background-attachment: scroll!important;
-	background-repeat: repeat!important;
-	background-size: auto!important;
-	background-position: left top!important;
-	border: 1px solid #5c5c5c;
+	background-color: #3d0048; /* Slightly lighter Dark Purple */
+	border: 1px solid #4b0034;
 	border-radius: 8px;
 	width: 80%;
 	height: 200px;
@@ -73,14 +65,17 @@
 	resize: none;
 }
 .link {
-	color: #35afea;
+	color: #c084d2; /* Light Lavender for links */
 	font-weight: bold;
 }
 .theme {
-	background-color: #35afea!important;
+	background-color: #c084d2; /* Light Lavender for theme button */
 }
 .theme:hover {
-	background-color: #1e7dcb!important;
+	background-color: #a76bd3; /* Slightly darker Lavender on hover */
+}
+h3, h4 {
+	color: #fff; /* Ensure headers are readable */
 }
 </style>
 </head>
@@ -90,16 +85,16 @@
 
 	<br><br><br>
 	<div class='container'><br><br>
-		<h3 style='color: #fff;'>Either Upload your Theme File or Paste it into the Textarea</h3>
-		<h4 style='color: #fff;'>(Optional) Either Upload a Custom Diff File or Use the <a class="link" target=”_blank” href="https://raw.githubusercontent.com/SyndiShanX/Update-Classes/main/Changes.txt">Included One</a></h3><br><br><br>
+		<h3>Either Upload your Theme File or Paste it into the Textarea</h3>
+		<h4>(Optional) Either Upload a Custom Diff File or Use the <a class="link" target="_blank" href="https://raw.githubusercontent.com/SyndiShanX/Update-Classes/main/Changes.txt">Included One</a></h4><br><br><br>
 		<label for='theme-file' class='fileInputVisible theme' role='button'>Upload Theme File</label><label for='diff-file' class='fileInputVisible' role='button' style="margin-left: 5%;">Upload Diff File</label>
-		<input id='theme-file' type='file' class='fileInput' onchange='loadThemeFile()'style='color: #fff;'><br>
-		<input id='diff-file' type='file' class='fileInput' onchange='loadChangesFile()'style='color: #fff;'><br><br><br>
-		<font style='color: #fff; font: 18px Arial; font-weight: bold;' id='textAreaStatus'>If you use the Textarea, you have to Click off after you Paste your Theme for it to Update</font><br><br>
+		<input id='theme-file' type='file' class='fileInput' onchange='loadThemeFile()' style='color: #fff;'><br>
+		<input id='diff-file' type='file' class='fileInput' onchange='loadChangesFile()' style='color: #fff;'><br><br><br>
+		<font id='textAreaStatus'>If you use the Textarea, you have to Click off after you Paste your Theme for it to Update</font><br><br>
 		<textarea id='themeTextArea' onchange='updateClasses("textarea")'></textarea><br><br>
 		<button class='outputButton' onClick='updateClasses("file")'>Download Updated Theme</button>
 		<button class='outputButton' onClick='updateClasses("clipboard")'>Copy to Clipboard</button><br>
-		<h4 style='color: #fff;'>Credits:</h4>
+		<h4>Credits:</h4>
 		<div id='creditsURL'></div>
 		<font style='display: none;' id='diffFileURL'></font>
 		<font style='display: none;' id='diffFile'></font>
@@ -232,4 +227,3 @@ function updateClasses(outputMethod) {
 <script src="GlobalNavbarFixer.js"></script>
 </body>
 </html>
-<!--Nav Template End-->

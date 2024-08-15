@@ -86,12 +86,10 @@ h3 {
 </head>
 <body>
 <div class="MainWrapper" align="center">
-	<br><br><br>
-	<div class='container'><br><br>
+	<div class='container'>
 		<h3>Either Upload your Theme File or Paste it into the Textarea</h3>
-		<br><br><br>
 		<label for='theme-file' class='fileInputVisible theme' role='button'>Upload Theme File</label>
-		<input id='theme-file' type='file' class='fileInput' onchange='loadThemeFile()' style='color: #e0e0e0;'><br><br><br>
+		<input id='theme-file' type='file' class='fileInput' onchange='loadThemeFile()' style='color: #e0e0e0;'><br><br>
 		<font style='color: #e0e0e0; font: 18px Arial; font-weight: bold;' id='textAreaStatus'>If you use the Textarea, you have to Click off after you Paste your Theme for it to Update</font><br><br>
 		<textarea id='themeTextArea' onchange='updateClasses("textarea")'></textarea><br><br>
 		<button class='outputButton' onClick='updateClasses("file")'>Download Updated Theme</button>

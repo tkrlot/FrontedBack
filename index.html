@@ -3,55 +3,54 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=0.5">
-<title>SyndiShanX - Class Updater</title>
+<title>Class Updater</title>
 <link rel="stylesheet" href="Fonts/Font_Awesome.min.css">
 <link rel="icon" href="Images/Global/Icon_Tab.webp">
 <link rel="stylesheet" href="GlobalCSS.css">
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 <style type="text/css">
+body {
+	background-color: #121212;
+	color: #e0e0e0;
+}
+
 .fileInputVisible, .outputButton {
-	background-color: rgba(255, 255, 255, 0.25);
+	background-color: rgba(50, 50, 50, 0.75);
 	padding: 28px;
-	color: #fff;
+	color: #e0e0e0;
 	font: 28px Arial;
 	font-weight: bold;
 	text-align: center;
-	border: 1px solid #5c5c5c;
+	border: 1px solid #333;
 	border-radius: 8px;
 	cursor: pointer;
 }
 .outputButton {
 	padding: 18px;
 	margin: 10px;
-	color: #fff;
+	color: #e0e0e0;
 	font: 18px Arial;
 	font-weight: bold;
 	text-align: center;
-	border: 1px solid #5c5c5c;
+	border: 1px solid #333;
 	border-radius: 8px;
 	cursor: pointer;
 }
 .fileInputVisible:hover, .outputButton:hover {
-	background-color: rgba(255, 255, 255, 0.15);
-	border: 1px solid #c0c0c0;
+	background-color: rgba(100, 100, 100, 0.75);
+	border: 1px solid #555;
 }
 .fileInputVisible:disabled, .outputButton:disabled {
-	background-color: rgba(255, 255, 255, 0.05);
-	border: 1px solid #1a1a1a;
+	background-color: rgba(50, 50, 50, 0.5);
+	border: 1px solid #222;
 	cursor: not-allowed;
 }
 .fileInput {
 	display: none;
 }
 .container {
-	background-image: var(--bgImageDark)!important;
-	background-clip: border-box!important;
-	background-origin: padding-box!important;
-	background-attachment: scroll!important;
-	background-repeat: repeat!important;
-	background-size: auto!important;
-	background-position: left top!important;
-	border: 1px solid #5c5c5c;
+	background-color: #1e1e1e;
+	border: 1px solid #333;
 	border-radius: 8px;
 	min-width: 800px;
 	width: 50%;
@@ -59,29 +58,23 @@
 	padding-bottom: 50px;
 }
 #themeTextArea {
-	background-image: var(--bgImage)!important;
-	background-clip: border-box!important;
-	background-origin: padding-box!important;
-	background-attachment: scroll!important;
-	background-repeat: repeat!important;
-	background-size: auto!important;
-	background-position: left top!important;
-	border: 1px solid #5c5c5c;
+	background-color: #2c2c2c;
+	border: 1px solid #333;
 	border-radius: 8px;
 	width: 80%;
 	height: 200px;
-	color: #fff;
+	color: #e0e0e0;
 	resize: none;
 }
 .link {
-	color: #35afea;
+	color: #63a4ff;
 	font-weight: bold;
 }
 .theme {
-	background-color: #35afea!important;
+	background-color: #63a4ff;
 }
 .theme:hover {
-	background-color: #1e7dcb!important;
+	background-color: #4a8bff;
 }
 </style>
 </head>
@@ -89,12 +82,12 @@
 <div class="MainWrapper" align="center">
 	<br><br><br>
 	<div class='container'><br><br>
-		<h3 style='color: #fff; font-family: "Nanum Pen Script", cursive;'>Either Upload your Theme File or Paste it into the Textarea</h3>
+		<h3 style='color: #e0e0e0; font-family: "Nanum Pen Script", cursive;'>Either Upload your Theme File or Paste it into the Textarea</h3>
 		<br><br><br>
 		<label for='theme-file' class='fileInputVisible theme' role='button'>Upload Theme File</label>
-		<input id='theme-file' type='file' class='fileInput' onchange='loadThemeFile()' style='color: #fff;'><br>
-		<input id='diff-file' type='file' class='fileInput' onchange='loadChangesFile()' style='color: #fff;'><br><br><br>
-		<font style='color: #fff; font: 18px Arial; font-weight: bold;' id='textAreaStatus'>If you use the Textarea, you have to Click off after you Paste your Theme for it to Update</font><br><br>
+		<input id='theme-file' type='file' class='fileInput' onchange='loadThemeFile()' style='color: #e0e0e0;'><br>
+		<input id='diff-file' type='file' class='fileInput' onchange='loadChangesFile()' style='color: #e0e0e0;'><br><br><br>
+		<font style='color: #e0e0e0; font: 18px Arial; font-weight: bold;' id='textAreaStatus'>If you use the Textarea, you have to Click off after you Paste your Theme for it to Update</font><br><br>
 		<textarea id='themeTextArea' onchange='updateClasses("textarea")'></textarea><br><br>
 		<button class='outputButton' onClick='updateClasses("file")'>Download Updated Theme</button>
 		<button class='outputButton' onClick='updateClasses("clipboard")'>Copy to Clipboard</button><br>

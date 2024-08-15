@@ -9,16 +9,16 @@
 <link rel="stylesheet" href="GlobalCSS.css">
 <style type="text/css">
 body {
-    background-color: #000; /* Background color of the page */
+    background-color: #f0f0f0; /* Light background for the page */
 }
 .fileInputVisible, .outputButton {
-    background-color: rgba(58, 10, 91, 0.25); /* Dark purple with transparency */
+    background-color: #4a004f; /* Dark purple for buttons */
     padding: 28px;
     color: #fff;
     font: 28px Arial;
     font-weight: bold;
     text-align: center;
-    border: 1px solid #290742; /* Darker border color */
+    border: 1px solid #301934; /* Dark border for buttons */
     border-radius: 8px;
     cursor: pointer;
 }
@@ -29,25 +29,25 @@ body {
     font: 18px Arial;
     font-weight: bold;
     text-align: center;
-    border: 1px solid #290742; /* Darker border color */
+    border: 1px solid #301934; /* Dark border for buttons */
     border-radius: 8px;
     cursor: pointer;
 }
 .fileInputVisible:hover, .outputButton:hover {
-    background-color: rgba(58, 10, 91, 0.15); /* Darker purple on hover */
-    border: 1px solid #d3a6c9; /* Light purple border on hover */
+    background-color: #3b0038; /* Slightly lighter dark purple on hover */
+    border: 1px solid #301934; /* Dark border on hover */
 }
 .fileInputVisible:disabled, .outputButton:disabled {
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid #1a1a1a;
+    background-color: #2a002e; /* Darker color when disabled */
+    border: 1px solid #1a0019;
     cursor: not-allowed;
 }
 .fileInput {
     display: none;
 }
 .container {
-    background-color: #3a0a5b; /* Dark purple color */
-    border: 1px solid #290742; /* Darker border color */
+    background-color: #4a004f; /* Dark purple container background */
+    border: 1px solid #301934; /* Dark border for container */
     border-radius: 8px;
     min-width: 800px;
     width: 50%;
@@ -55,22 +55,22 @@ body {
     padding-bottom: 50px;
 }
 #themeTextArea {
-    background-color: #3a0a5b; /* Dark purple textarea background */
-    border: 1px solid #290742; /* Darker border color */
+    background-color: #4a004f; /* Dark purple textarea background */
+    border: 1px solid #301934; /* Dark border for textarea */
     width: 80%;
     height: 200px;
     color: #fff;
     resize: none;
 }
 .link {
-    color: #8e2d7a; /* Lighter purple for links */
+    color: #7d3f6c; /* Lighter purple for links */
     font-weight: bold;
 }
 .theme {
-    background-color: #8e2d7a; /* Lighter purple for theme button */
+    background-color: #7d3f6c; /* Lighter purple for theme button */
 }
 .theme:hover {
-    background-color: #6a1a52; /* Darker purple on hover */
+    background-color: #6a2c57; /* Darker purple on hover */
 }
 </style>
 </head>
@@ -81,7 +81,6 @@ body {
     <br><br><br>
     <div class='container'><br><br>
         <h3 style='color: #fff;'>Either Upload your Theme File or Paste it into the Textarea</h3>
-        <h4 style='color: #fff;'>(Optional) Either Upload a Custom Diff File or Use the <a class="link" target="_blank" href="https://raw.githubusercontent.com/SyndiShanX/Update-Classes/main/Changes.txt">Included One</a></h4><br><br><br>
         <label for='theme-file' class='fileInputVisible theme' role='button'>Upload Theme File</label>
         <label for='diff-file' class='fileInputVisible' role='button' style="margin-left: 5%;">Upload Diff File</label>
         <input id='theme-file' type='file' class='fileInput' onchange='loadThemeFile()' style='color: #fff;'><br>
@@ -90,8 +89,6 @@ body {
         <textarea id='themeTextArea' onchange='updateClasses("textarea")'></textarea><br><br>
         <button class='outputButton' onClick='updateClasses("file")'>Download Updated Theme</button>
         <button class='outputButton' onClick='updateClasses("clipboard")'>Copy to Clipboard</button><br>
-        <h4 style='color: #fff;'>Credits:</h4>
-        <div id='creditsURL'></div>
         <font style='display: none;' id='diffFileURL'></font>
         <font style='display: none;' id='diffFile'></font>
     </div>

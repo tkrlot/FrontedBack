@@ -84,10 +84,18 @@ h3 {
 }
 .font-status {
 	display: block;
-	margin-top: 20px; /* Adjust margin if needed, remove if not needed */
+	margin-top: 20px; /* Adjust margin if needed */
 	color: #e0e0e0;
 	font: 18px Arial;
 	font-weight: bold;
+}
+.signature {
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 24px;
+	text-align: right;
+	color: #e0e0e0;
+	margin-top: 20px; /* Space above the signature */
+	margin-right: 20px; /* Space from the right */
 }
 </style>
 </head>
@@ -101,6 +109,7 @@ h3 {
 		<textarea id='themeTextArea' onchange='updateClasses("textarea")'></textarea><br><br>
 		<button class='outputButton' onClick='updateClasses("file")'>Download Updated Theme</button>
 		<button class='outputButton' onClick='updateClasses("clipboard")'>Copy to Clipboard</button><br>
+		<div class="signature">나젬</div>
 	</div>
 <!--Nav Template Start-->
 </div>

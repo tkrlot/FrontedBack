@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=0.5">
-<title>Class Updater</title>
+<title>SyndiShanX - Class Updater</title>
 <link rel="stylesheet" href="Fonts/Font_Awesome.min.css">
 <link rel="icon" href="Images/Global/Icon_Tab.webp">
 <link rel="stylesheet" href="GlobalCSS.css">
@@ -18,20 +18,20 @@ body {
 	background-color: rgba(50, 50, 50, 0.75);
 	padding: 28px;
 	color: #e0e0e0;
-	font: 28px Arial;
+	font: 18px Arial;
 	font-weight: bold;
 	text-align: center;
 	border: 1px solid #333;
 	border-radius: 8px;
 	cursor: pointer;
 }
+.fileInputVisible {
+	background-color: rgba(40, 40, 40, 0.75);
+}
 .outputButton {
 	padding: 18px;
 	margin: 10px;
 	color: #e0e0e0;
-	font: 18px Arial;
-	font-weight: bold;
-	text-align: center;
 	border: 1px solid #333;
 	border-radius: 8px;
 	cursor: pointer;
@@ -66,6 +66,12 @@ body {
 	color: #e0e0e0;
 	resize: none;
 }
+h3 {
+	color: #e0e0e0;
+	font-family: "Nanum Pen Script", cursive;
+	font-size: 32px;
+	text-align: center;
+}
 .link {
 	color: #63a4ff;
 	font-weight: bold;
@@ -76,21 +82,30 @@ body {
 .theme:hover {
 	background-color: #4a8bff;
 }
+.signature {
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 24px;
+	text-align: right;
+	color: #e0e0e0;
+	margin-top: 20px;
+}
 </style>
 </head>
 <body>
 <div class="MainWrapper" align="center">
 	<br><br><br>
 	<div class='container'><br><br>
-		<h3 style='color: #e0e0e0; font-family: "Nanum Pen Script", cursive;'>Either Upload your Theme File or Paste it into the Textarea</h3>
+		<h3>Either Upload your Theme File or Paste it into the Textarea</h3>
 		<br><br><br>
 		<label for='theme-file' class='fileInputVisible theme' role='button'>Upload Theme File</label>
+		<label for='diff-file' class='fileInputVisible' role='button' style="margin-left: 5%;">Upload Diff File</label>
 		<input id='theme-file' type='file' class='fileInput' onchange='loadThemeFile()' style='color: #e0e0e0;'><br>
 		<input id='diff-file' type='file' class='fileInput' onchange='loadChangesFile()' style='color: #e0e0e0;'><br><br><br>
 		<font style='color: #e0e0e0; font: 18px Arial; font-weight: bold;' id='textAreaStatus'>If you use the Textarea, you have to Click off after you Paste your Theme for it to Update</font><br><br>
 		<textarea id='themeTextArea' onchange='updateClasses("textarea")'></textarea><br><br>
 		<button class='outputButton' onClick='updateClasses("file")'>Download Updated Theme</button>
 		<button class='outputButton' onClick='updateClasses("clipboard")'>Copy to Clipboard</button><br>
+		<div class="signature">SyndiShanX - Update Tool</div>
 	</div>
 <!--Nav Template Start-->
 </div>

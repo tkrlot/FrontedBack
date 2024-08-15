@@ -26,7 +26,7 @@ body {
 	cursor: pointer;
 }
 .fileInputVisible {
-	background-color: rgba(40, 40, 40, 0.75);
+	background-color: rgba(30, 30, 30, 0.75); /* Dark color for Upload Theme File */
 }
 .outputButton {
 	padding: 18px;
@@ -98,14 +98,12 @@ h3 {
 		<h3>Either Upload your Theme File or Paste it into the Textarea</h3>
 		<br><br><br>
 		<label for='theme-file' class='fileInputVisible theme' role='button'>Upload Theme File</label>
-		<label for='diff-file' class='fileInputVisible' role='button' style="margin-left: 5%;">Upload Diff File</label>
-		<input id='theme-file' type='file' class='fileInput' onchange='loadThemeFile()' style='color: #e0e0e0;'><br>
-		<input id='diff-file' type='file' class='fileInput' onchange='loadChangesFile()' style='color: #e0e0e0;'><br><br><br>
+		<input id='theme-file' type='file' class='fileInput' onchange='loadThemeFile()' style='color: #e0e0e0;'><br><br><br>
 		<font style='color: #e0e0e0; font: 18px Arial; font-weight: bold;' id='textAreaStatus'>If you use the Textarea, you have to Click off after you Paste your Theme for it to Update</font><br><br>
 		<textarea id='themeTextArea' onchange='updateClasses("textarea")'></textarea><br><br>
 		<button class='outputButton' onClick='updateClasses("file")'>Download Updated Theme</button>
 		<button class='outputButton' onClick='updateClasses("clipboard")'>Copy to Clipboard</button><br>
-		<div class="signature">SyndiShanX - Update Tool</div>
+		<div class="signature">포초롱 - Update Tool</div>
 	</div>
 <!--Nav Template Start-->
 </div>
@@ -117,26 +115,6 @@ async function loadChangesFileURL() {
 	document.getElementById('diffFileURL').innerHTML = rawText;
 }
 loadChangesFileURL();
-
-function loadChangesFile() {
-	const input = document.getElementsByClassName('fileInput')[1];
-	
-	if (typeof window.FileReader !== 'function') {
-		alert("The file API isn't supported on this browser yet");
-		return;
-	}
-	
-	if (!input) {
-		alert('Unable to find the fileInput element');
-	} else if (!input.files) {
-		alert("This browser doesn't seem to support the `files` property of file inputs");
-	} else {
-		const file = input.files[0];
-		const fr = new FileReader();
-		fr.onload = function () { document.getElementById('diffFile').textContent = fr.result; };
-		fr.readAsText(file);
-	}
-}
 
 function loadThemeFile() {
 	const input = document.getElementsByClassName('fileInput')[0];
@@ -157,9 +135,9 @@ function loadThemeFile() {
 		fr.readAsText(file);
 		document.getElementById('textAreaStatus').style.display = 'none';
 		document.getElementById('themeTextArea').style.display = 'none';
-		document.querySelectorAll('br')[12].remove();
-		document.querySelectorAll('br')[12].remove();
-		document.querySelectorAll('br')[12].remove();
+		document.querySelectorAll('br')[9].remove();
+		document.querySelectorAll('br')[9].remove();
+		document.querySelectorAll('br')[9].remove();
 	}
 
 	function receivedText(e) {

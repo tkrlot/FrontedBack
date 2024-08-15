@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="GlobalCSS.css">
 <style type="text/css">
 body {
-    background-color: #f0f0f0; /* Light background for the page */
+    background-color: #141414; /* Light background for the page */
 }
 .fileInputVisible, .outputButton {
     background-color: #4a004f; /* Dark purple for buttons */
@@ -81,6 +81,7 @@ body {
     <br><br><br>
     <div class='container'><br><br>
         <h3 style='color: #fff;'>Either Upload your Theme File or Paste it into the Textarea</h3>
+        <h4 style='color: #fff;'>(Optional) Either Upload a Custom Diff File or Use the <a class="link" target="_blank" href="https://raw.githubusercontent.com/SyndiShanX/Update-Classes/main/Changes.txt">Included One</a></h4><br><br><br>
         <label for='theme-file' class='fileInputVisible theme' role='button'>Upload Theme File</label>
         <label for='diff-file' class='fileInputVisible' role='button' style="margin-left: 5%;">Upload Diff File</label>
         <input id='theme-file' type='file' class='fileInput' onchange='loadThemeFile()' style='color: #fff;'><br>
@@ -89,6 +90,8 @@ body {
         <textarea id='themeTextArea' onchange='updateClasses("textarea")'></textarea><br><br>
         <button class='outputButton' onClick='updateClasses("file")'>Download Updated Theme</button>
         <button class='outputButton' onClick='updateClasses("clipboard")'>Copy to Clipboard</button><br>
+        <h4 style='color: #fff;'>Credits:</h4>
+        <div id='creditsURL'></div>
         <font style='display: none;' id='diffFileURL'></font>
         <font style='display: none;' id='diffFile'></font>
     </div>

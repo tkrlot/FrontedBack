@@ -56,6 +56,11 @@ body {
 	width: 50%;
 	height: fit-content;
 	padding-bottom: 50px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	position: relative;
 }
 #themeTextArea {
 	background-color: #2c2c2c;
@@ -85,12 +90,12 @@ h3 {
 .signature {
 	font-family: 'Nanum Pen Script', cursive;
 	font-size: 24px;
-	text-align: right;
+	text-align: center;
 	color: #e0e0e0;
-	margin-top: 5px;  /* Increased margin-top to move it lower */
-	margin-left: -80px;  /* Added margin-left to move it to the left */
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
 }
-
 </style>
 </head>
 <body>

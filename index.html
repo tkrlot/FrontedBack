@@ -1,39 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=0.5">
 <title>SyndiShanX - Class Updater</title>
 <link rel="stylesheet" href="Fonts/Font_Awesome.min.css">
 <link rel="icon" href="Images/Global/Icon_Tab.webp">
 <link rel="stylesheet" href="GlobalCSS.css">
 <style type="text/css">
 body {
-    background-color: #2e2e2e; /* Main background color */
+    background-color: #000; /* Background color of the page */
 }
-
 .fileInputVisible, .outputButton {
-    background-color: rgba(100, 0, 100, 0.25); /* Dark Purple */
+    background-color: rgba(58, 10, 91, 0.25); /* Dark purple with transparency */
     padding: 28px;
     color: #fff;
     font: 28px Arial;
     font-weight: bold;
     text-align: center;
-    border: 1px solid #5c5c5c;
+    border: 1px solid #290742; /* Darker border color */
     border-radius: 8px;
     cursor: pointer;
 }
 .outputButton {
     padding: 18px;
     margin: 10px;
+    color: #fff;
     font: 18px Arial;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid #290742; /* Darker border color */
+    border-radius: 8px;
+    cursor: pointer;
 }
 .fileInputVisible:hover, .outputButton:hover {
-    background-color: rgba(150, 0, 150, 0.15); /* Lighter Dark Purple */
-    border: 1px solid #c0c0c0;
+    background-color: rgba(58, 10, 91, 0.15); /* Darker purple on hover */
+    border: 1px solid #d3a6c9; /* Light purple border on hover */
 }
 .fileInputVisible:disabled, .outputButton:disabled {
-    background-color: rgba(100, 0, 100, 0.05); /* Disabled State */
+    background-color: rgba(255, 255, 255, 0.05);
     border: 1px solid #1a1a1a;
     cursor: not-allowed;
 }
@@ -41,14 +46,8 @@ body {
     display: none;
 }
 .container {
-    background-image: var(--bgImageDark)!important;
-    background-clip: border-box!important;
-    background-origin: padding-box!important;
-    background-attachment: scroll!important;
-    background-repeat: repeat!important;
-    background-size: auto!important;
-    background-position: left top!important;
-    border: 1px solid #5c5c5c;
+    background-color: #3a0a5b; /* Dark purple color */
+    border: 1px solid #290742; /* Darker border color */
     border-radius: 8px;
     min-width: 800px;
     width: 50%;
@@ -56,49 +55,42 @@ body {
     padding-bottom: 50px;
 }
 #themeTextArea {
-    background-color: #1a1a1a; /* Dark Background for Textarea */
-    border: 1px solid #5c5c5c;
-    border-radius: 8px;
+    background-color: #3a0a5b; /* Dark purple textarea background */
+    border: 1px solid #290742; /* Darker border color */
     width: 80%;
     height: 200px;
     color: #fff;
     resize: none;
 }
 .link {
-    color: #6a0dad; /* Dark Purple Link */
+    color: #8e2d7a; /* Lighter purple for links */
     font-weight: bold;
 }
-.link:hover {
-    color: #4b0082; /* Darker Purple on Hover */
-}
 .theme {
-    background-color: #6a0dad!important; /* Dark Purple */
+    background-color: #8e2d7a; /* Lighter purple for theme button */
 }
 .theme:hover {
-    background-color: #4b0082!important; /* Darker Purple on Hover */
-}
-h3, h4, font {
-    color: #fff; /* White Text Color */
+    background-color: #6a1a52; /* Darker purple on hover */
 }
 </style>
 </head>
-<body>
+<body lang="">
 <div class="MainWrapper" align="center">
 <!--Nav Template End-->
 
     <br><br><br>
     <div class='container'><br><br>
-        <h3>Either Upload your Theme File or Paste it into the Textarea</h3>
-        <h4>(Optional) Either Upload a Custom Diff File or Use the <a class="link" target="_blank" href="https://raw.githubusercontent.com/SyndiShanX/Update-Classes/main/Changes.txt">Included One</a></h4><br><br><br>
+        <h3 style='color: #fff;'>Either Upload your Theme File or Paste it into the Textarea</h3>
+        <h4 style='color: #fff;'>(Optional) Either Upload a Custom Diff File or Use the <a class="link" target="_blank" href="https://raw.githubusercontent.com/SyndiShanX/Update-Classes/main/Changes.txt">Included One</a></h4><br><br><br>
         <label for='theme-file' class='fileInputVisible theme' role='button'>Upload Theme File</label>
         <label for='diff-file' class='fileInputVisible' role='button' style="margin-left: 5%;">Upload Diff File</label>
         <input id='theme-file' type='file' class='fileInput' onchange='loadThemeFile()' style='color: #fff;'><br>
         <input id='diff-file' type='file' class='fileInput' onchange='loadChangesFile()' style='color: #fff;'><br><br><br>
-        <font id='textAreaStatus'>If you use the Textarea, you have to Click off after you Paste your Theme for it to Update</font><br><br>
+        <font style='color: #fff; font: 18px Arial; font-weight: bold;' id='textAreaStatus'>If you use the Textarea, you have to Click off after you Paste your Theme for it to Update</font><br><br>
         <textarea id='themeTextArea' onchange='updateClasses("textarea")'></textarea><br><br>
         <button class='outputButton' onClick='updateClasses("file")'>Download Updated Theme</button>
         <button class='outputButton' onClick='updateClasses("clipboard")'>Copy to Clipboard</button><br>
-        <h4>Credits:</h4>
+        <h4 style='color: #fff;'>Credits:</h4>
         <div id='creditsURL'></div>
         <font style='display: none;' id='diffFileURL'></font>
         <font style='display: none;' id='diffFile'></font>
@@ -179,6 +171,7 @@ function updateClasses(outputMethod) {
     } else {
         rawText = document.getElementById('diffFile').innerHTML
     }
+    //console.log(rawText)
     classNum = rawText.split('\n').length - 1
     changesText = rawText.split('\n')
     if (outputMethod == 'textarea') {

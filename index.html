@@ -84,7 +84,7 @@ h3 {
 }
 .font-status {
 	display: block;
-	margin-top: 20px; /* Adjust margin to create the gap */
+	margin-top: 20px; /* Adjust margin if needed, remove if not needed */
 	color: #e0e0e0;
 	font: 18px Arial;
 	font-weight: bold;
@@ -97,7 +97,7 @@ h3 {
 		<h3>Either Upload your Theme File or Paste it into the Textarea</h3>
 		<label for='theme-file' class='fileInputVisible theme' role='button'>Upload Theme File</label>
 		<input id='theme-file' type='file' class='fileInput' onchange='loadThemeFile()' style='color: #e0e0e0;'><br><br>
-		<font class='font-status' id='textAreaStatus'>If you use the Textarea, you have to Click off after you Paste your Theme for it to Update</font><br><br>
+		<font class='font-status' id='textAreaStatus'>If you use the Textarea, you have to Click off after you Paste your Theme for it to Update</font><br>
 		<textarea id='themeTextArea' onchange='updateClasses("textarea")'></textarea><br><br>
 		<button class='outputButton' onClick='updateClasses("file")'>Download Updated Theme</button>
 		<button class='outputButton' onClick='updateClasses("clipboard")'>Copy to Clipboard</button><br>

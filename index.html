@@ -1,167 +1,170 @@
+<!--Nav Template Start-->
 <!DOCTYPE html>
-<html lang="">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=0.5">
-<title>클래스 업데이터</title>
+<title>SyndiShanX - Class Updater</title>
 <link rel="stylesheet" href="Fonts/Font_Awesome.min.css">
-<link rel="icon" href="https://i.imgur.com/bbMMQQ5.png" type="image/png"> <!-- External favicon link -->
+<link rel="icon" href="https://i.imgur.com/your-icon-link.webp">
 <link rel="stylesheet" href="GlobalCSS.css">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 <style type="text/css">
-body {
-	background-color: #121212;
-	color: #e0e0e0;
-}
-
 .outputButton {
-	background-color: rgba(50, 50, 50, 0.75);
+	background-color: rgba(255, 255, 255, 0.25);
 	padding: 18px;
 	margin: 10px;
-	color: #e0e0e0;
+	color: #fff;
 	font: 18px Arial;
 	font-weight: bold;
 	text-align: center;
-	border: 1px solid #333;
+	border: 1px solid #5c5c5c;
 	border-radius: 8px;
 	cursor: pointer;
 }
 .outputButton:hover {
-	background-color: rgba(100, 100, 100, 0.75);
-	border: 1px solid #555;
+	background-color: rgba(255, 255, 255, 0.15);
+	border: 1px solid #c0c0c0;
 }
 .outputButton:disabled {
-	background-color: rgba(50, 50, 50, 0.5);
-	border: 1px solid #222;
+	background-color: rgba(255, 255, 255, 0.05);
+	border: 1px solid #1a1a1a;
 	cursor: not-allowed;
 }
-.fileInput {
-	display: none;
-}
 .container {
-	background-color: #1e1e1e;
-	border: 1px solid #333;
+	background-image: var(--bgImageDark)!important;
+	background-clip: border-box!important;
+	background-origin: padding-box!important;
+	background-attachment: scroll!important;
+	background-repeat: repeat!important;
+	background-size: auto!important;
+	background-position: left top!important;
+	border: 1px solid #5c5c5c;
 	border-radius: 8px;
 	min-width: 800px;
 	width: 50%;
 	height: fit-content;
 	padding-bottom: 50px;
-	position: relative; /* Add this for absolute positioning inside */
 }
 #themeTextArea {
-	background-color: #2c2c2c;
-	border: 1px solid #333;
+	background-image: var(--bgImage)!important;
+	background-clip: border-box!important;
+	background-origin: padding-box!important;
+	background-attachment: scroll!important;
+	background-repeat: repeat!important;
+	background-size: auto!important;
+	background-position: left top!important;
+	border: 1px solid #5c5c5c;
 	border-radius: 8px;
 	width: 80%;
 	height: 200px;
-	color: #e0e0e0;
+	color: #fff;
 	resize: none;
 }
-h3 {
-	color: #e0e0e0;
-	font-family: "Nanum Pen Script", cursive;
-	font-size: 32px;
-	text-align: center;
-	margin-bottom: 0; /* Remove bottom margin */
-}
 .link {
-	color: #63a4ff;
+	color: #35afea;
 	font-weight: bold;
 }
 .theme {
-	background-color: #63a4ff;
+	background-color: #35afea!important;
 }
 .theme:hover {
-	background-color: #4a8bff;
-}
-.font-status {
-	display: block;
-	margin-top: 0; /* Remove top margin */
-	color: #e0e0e0;
-	font: 18px Arial;
-	font-weight: bold;
-}
-.signature {
-	font-family: 'Nanum Pen Script', cursive;
-	font-size: 24px;
-	color: #e0e0e0;
-	position: absolute;
-	bottom: 10px; /* Space from the bottom */
-	right: 10px; /* Space from the right */
+	background-color: #1e7dcb!important;
 }
 </style>
 </head>
-<body>
+<body lang="">
 <div class="MainWrapper" align="center">
-	<div class='container'>
-		<h3>Paste your Theme into the Textarea and Click a Button Below</h3>
-		<font class='font-status' id='textAreaStatus'>If you use the Textarea, you have to Click off after you Paste your Theme for it to Update</font><br>
+<!--Nav Template End-->
+
+	<br><br><br>
+	<div class='container'><br><br>
+		<h3 style='color: #fff;'>Paste your Theme into the Textarea</h3>
+		<h4 style='color: #fff;'>(Optional) Either Upload a Custom Diff File or Use the <a class="link" target="_blank" href="https://raw.githubusercontent.com/SyndiShanX/Update-Classes/main/Changes.txt">Included One</a></h4><br><br><br>
+		<label for='diff-file' class='fileInputVisible' role='button' style="margin-left: 5%;">Upload Diff File</label>
+		<input id='diff-file' type='file' class='fileInput' onchange='loadChangesFile()' style='color: #fff;'><br><br><br>
+		<font style='color: #fff; font: 18px Arial; font-weight: bold;' id='textAreaStatus'>If you use the Textarea, you have to Click off after you Paste your Theme for it to Update</font><br><br>
 		<textarea id='themeTextArea' onchange='updateClasses("textarea")'></textarea><br><br>
 		<button class='outputButton' onClick='updateClasses("file")'>Download Updated Theme</button>
 		<button class='outputButton' onClick='updateClasses("clipboard")'>Copy to Clipboard</button><br>
-		<div class="signature">압둘라흐만</div>
+		<font style='display: none;' id='diffFileURL'></font>
+		<font style='display: none;' id='diffFile'></font>
+		<br>
+		<font style='color: #fff; font: 14px Arial;'>bts for ever</font>
 	</div>
+
 <!--Nav Template Start-->
 </div>
 <script>
 async function loadChangesFileURL() {
-	const url = 'https://raw.githubusercontent.com/SyndiShanX/Update-Classes/main/Changes.txt';
+	const url = 'https://raw.githubusercontent.com/SyndiShanX/Update-Classes/main/Changes.txt'
 	let rawFile = await fetch(url);
 	let rawText = await rawFile.text();
-	document.getElementById('diffFileURL').innerHTML = rawText;
+	document.getElementById('diffFileURL').innerHTML = rawText
 }
-loadChangesFileURL();
+
+loadChangesFileURL()
+
+function loadChangesFile() {
+	input = document.getElementsByClassName('fileInput')[0];
+	
+	if (typeof window.FileReader !== 'function') {
+		alert("The file API isn't supported on this browser yet");
+		return;
+	}
+	
+	if (!input) {
+		alert('Unable to find the fileInput element');
+	} else if (!input.files) {
+		alert("This browser doesn't seem to support the `files` property of file inputs");
+	} else {
+		file = input.files[0];
+		fr = new FileReader();
+		fr.onload = function () { document.getElementById('diffFile').textContent = fr.result; }
+		fr.readAsText(file);
+	}
+}
 
 function updateClasses(outputMethod) {
-	let i = 0;
-	let rawText;
-
-	if (document.getElementsByClassName('fileInput')[1]?.files.length !== 1) {
-		rawText = document.getElementById('diffFileURL').innerHTML;
+	var i = 0
+	if (document.getElementsByClassName('fileInput')[0].files.length != 1) {
+		rawText = document.getElementById('diffFileURL').innerHTML
 	} else {
-		rawText = document.getElementById('diffFile').innerHTML;
+		rawText = document.getElementById('diffFile').innerHTML
 	}
-
-	const classNum = rawText.split('\n').length - 1;
-	const changesText = rawText.split('\n');
-
-	let themeText;
-	if (outputMethod === 'textarea') {
-		themeText = document.getElementById('themeTextArea').value;
+	//console.log(rawText)
+	classNum = rawText.split('\n').length - 1
+	changesText = rawText.split('\n')
+	if (outputMethod == 'textarea') {
+		themeText = document.getElementById('themeTextArea').value
 	} else {
-		themeText = document.getElementById('themeTextArea').value || themeFile.result;
+		themeText = document.getElementById('themeTextArea').value
 	}
-
+	
 	while (i < classNum) {
-		const class1 = changesText[i].split('\r')[0];
-		const class2 = changesText[i + 1].split('\r')[0];
+		class1 = changesText[i].split('\r')[0]
+		class2 = changesText[i + 1].split('\r')[0]
 	
-		themeText = themeText.replaceAll(class1, class2);
+		themeText = themeText.replaceAll(class1, class2)
 	
-		i = i + 2;
+		i = i + 2
 	}
 	
-	if (outputMethod === 'textarea') {
-		document.getElementById('textAreaStatus').innerHTML = 'Updated!';
-		document.getElementById('themeTextArea').value = themeText;
-	} else if (outputMethod === 'file') {
-		const synOutput = document.createElement('a');
-		const outputName = 'Output.theme.css';
-		if (document.getElementById('themeTextArea').value !== '') {
-			document.getElementById('textAreaStatus').innerHTML = 'Updated!';
-			document.getElementById('themeTextArea').value = themeText;
-		}
+	if (outputMethod == 'textarea') {
+		document.getElementById('textAreaStatus').innerHTML = 'Updated!'
+		document.getElementById('themeTextArea').value = themeText
+	} else if (outputMethod == 'file') {
+		var synOutput = document.createElement('a');
+		document.getElementById('textAreaStatus').innerHTML = 'Updated!'
+		document.getElementById('themeTextArea').value = themeText
+		outputName = 'Output.theme.css'
 		const blob = new Blob([themeText], { type: 'text/plain' });
-		const url = URL.createObjectURL(blob);
+		url = URL.createObjectURL(blob);
 		synOutput.download = outputName;
 		synOutput.href = url;
 		synOutput.click();
-	} else if (outputMethod === 'clipboard') {
-		if (document.getElementById('themeTextArea').value !== '') {
-			document.getElementById('textAreaStatus').innerHTML = 'Updated!';
-			document.getElementById('themeTextArea').value = themeText;
-		}
-		navigator.clipboard.writeText(themeText);
+	} else if (outputMethod == 'clipboard') {
+		document.getElementById('textAreaStatus').innerHTML = 'Updated!'
+		document.getElementById('themeTextArea').value = themeText
+		navigator.clipboard.writeText(document.getElementById('themeTextArea').value);
 	}
 }
 </script>
@@ -169,3 +172,4 @@ function updateClasses(outputMethod) {
 <script src="GlobalNavbarFixer.js"></script>
 </body>
 </html>
+<!--Nav Template End-->

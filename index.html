@@ -8,10 +8,6 @@
 <link rel="icon" href="https://i.imgur.com/yourImageId.ico">
 <link rel="stylesheet" href="GlobalCSS.css">
 <style type="text/css">
-:root {
-    --gap-space: 10px; /* Default gap space, change as needed */
-}
-
 .fileInputVisible, .outputButton {
 	background-color: rgba(255, 255, 255, 0.25);
 	padding: 28px;
@@ -95,14 +91,15 @@
 	font: 14px Arial;
 }
 #textAreaStatus {
-	margin: var(--gap-space) 0; /* Apply the gap space */
+	margin-top: 0; /* Adjust as needed */
 }
 </style>
 </head>
 <body>
 <div class="MainWrapper" align="center">
 <div class='container'>
-	<font style='color: #fff; font: 18px Arial; font-weight: bold;' id='textAreaStatus'>If you use the Textarea, you have to Click off after you Paste your Theme for it to Update</font><br>
+	<br><br><br>
+	<font style='color: #fff; font: 18px Arial; font-weight: bold;' id='textAreaStatus'>If you use the Textarea, you have to Click off after you Paste your Theme for it to Update</font><br><br>
 	<textarea id='themeTextArea' onchange='updateClasses("textarea")'></textarea><br><br>
 	<button class='outputButton' onClick='updateClasses("file")'>Download Updated Theme</button>
 	<button class='outputButton' onClick='updateClasses("clipboard")'>Copy to Clipboard</button><br>

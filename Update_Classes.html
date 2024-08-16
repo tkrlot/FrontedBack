@@ -14,9 +14,10 @@ body {
 	color: #e0e0e0;
 }
 
-.fileInputVisible, .outputButton {
+.outputButton {
 	background-color: rgba(50, 50, 50, 0.75);
-	padding: 28px;
+	padding: 18px;
+	margin: 10px;
 	color: #e0e0e0;
 	font: 18px Arial;
 	font-weight: bold;
@@ -25,22 +26,11 @@ body {
 	border-radius: 8px;
 	cursor: pointer;
 }
-.fileInputVisible {
-	background-color: rgba(60, 60, 60, 0.75); /* Dark grayish color for Upload Theme File */
-}
-.outputButton {
-	padding: 18px;
-	margin: 10px;
-	color: #e0e0e0;
-	border: 1px solid #333;
-	border-radius: 8px;
-	cursor: pointer;
-}
-.fileInputVisible:hover, .outputButton:hover {
+.outputButton:hover {
 	background-color: rgba(100, 100, 100, 0.75);
 	border: 1px solid #555;
 }
-.fileInputVisible:disabled, .outputButton:disabled {
+.outputButton:disabled {
 	background-color: rgba(50, 50, 50, 0.5);
 	border: 1px solid #222;
 	cursor: not-allowed;
@@ -103,9 +93,7 @@ h3 {
 <body>
 <div class="MainWrapper" align="center">
 	<div class='container'>
-		<h3>Either Upload your Theme File or Paste it into the Textarea</h3>
-		<label for='theme-file' class='fileInputVisible theme' role='button'>Upload Theme File</label>
-		<input id='theme-file' type='file' class='fileInput' onchange='loadThemeFile()' style='color: #e0e0e0;'><br><br>
+		<h3>Paste your Theme into the Textarea and Click a Button Below</h3>
 		<font class='font-status' id='textAreaStatus'>If you use the Textarea, you have to Click off after you Paste your Theme for it to Update</font><br>
 		<textarea id='themeTextArea' onchange='updateClasses("textarea")'></textarea><br><br>
 		<button class='outputButton' onClick='updateClasses("file")'>Download Updated Theme</button>
@@ -122,35 +110,6 @@ async function loadChangesFileURL() {
 	document.getElementById('diffFileURL').innerHTML = rawText;
 }
 loadChangesFileURL();
-
-function loadThemeFile() {
-	const input = document.getElementsByClassName('fileInput')[0];
-	
-	if (typeof window.FileReader !== 'function') {
-		alert("The file API isn't supported on this browser yet");
-		return;
-	}
-	
-	if (!input) {
-		alert('Unable to find the fileInput element');
-	} else if (!input.files) {
-		alert("This browser doesn't seem to support the files property of file inputs");
-	} else {
-		const file = input.files[0];
-		const fr = new FileReader();
-		fr.onload = receivedText;
-		fr.readAsText(file);
-		document.getElementById('textAreaStatus').style.display = 'none';
-		document.getElementById('themeTextArea').style.display = 'none';
-		document.querySelectorAll('br')[9].remove();
-		document.querySelectorAll('br')[9].remove();
-		document.querySelectorAll('br')[9].remove();
-	}
-
-	function receivedText(e) {
-		let lines = e.target.result;
-	}
-}
 
 function updateClasses(outputMethod) {
 	let i = 0;

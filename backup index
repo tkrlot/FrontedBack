@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=0.5">
+<title>클래스 업데이터</title>
+<link rel="stylesheet" href="Fonts/Font_Awesome.min.css">
+<link rel="icon" href="https://i.imgur.com/bbMMQQ5.png" type="image/png"> <!-- External favicon link -->
+<link rel="stylesheet" href="GlobalCSS.css">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+<style type="text/css">
+body {
+	background-color: #121212;
+	color: #e0e0e0;
+}
+
+.fileInputVisible, .outputButton {
+	background-color: rgba(50, 50, 50, 0.75);
+	padding: 28px;
+	color: #e0e0e0;
+	font: 18px Arial;
+	font-weight: bold;
+	text-align: center;
+	border: 1px solid #333;
+	border-radius: 8px;
+	cursor: pointer;
+}
+.fileInputVisible {
+	background-color: rgba(60, 60, 60, 0.75); /* Dark grayish color for Upload Theme File */
+}
+.outputButton {
+	padding: 18px;
+	margin: 10px;
+	color: #e0e0e0;
+	border: 1px solid #333;
+	border-radius: 8px;
+	cursor: pointer;
+}
+.fileInputVisible:hover, .outputButton:hover {
+	background-color: rgba(100, 100, 100, 0.75);
+	border: 1px solid #555;
+}
+.fileInputVisible:disabled, .outputButton:disabled {
+	background-color: rgba(50, 50, 50, 0.5);
+	border: 1px solid #222;
+	cursor: not-allowed;
+}
+.fileInput {
+	display: none;
+}
+.container {
+	background-color: #1e1e1e;
+	border: 1px solid #333;
+	border-radius: 8px;
+	min-width: 800px;
+	width: 50%;
+	height: fit-content;
+	padding-bottom: 50px;
+	position: relative; /* Add this for absolute positioning inside */
+}
+#themeTextArea {
+	background-color: #2c2c2c;
+	border: 1px solid #333;
+	border-radius: 8px;
+	width: 80%;
+	height: 200px;
+	color: #e0e0e0;
+	resize: none;
+}
+h3 {
+	color: #e0e0e0;
+	font-family: "Nanum Pen Script", cursive;
+	font-size: 32px;
+	text-align: center;
+}
+.link {
+	color: #63a4ff;
+	font-weight: bold;
+}
+.theme {
+	background-color: #63a4ff;
+}
+.theme:hover {
+	background-color: #4a8bff;
+}
+.font-status {
+	display: block;
+	margin-top: 20px; /* Adjust margin if needed */
+	color: #e0e0e0;
+	font: 18px Arial;
+	font-weight: bold;
+}
+.signature {
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 24px;
+	color: #e0e0e0;
+	position: absolute;
+	bottom: 10px; /* Space from the bottom */
+	right: 10px; /* Space from the right */
+}
+</style>
+</head>
+<body>
+<div class="MainWrapper" align="center">
+	<div class='container'>
+		<h3>Either Upload your Theme File or Paste it into the Textarea</h3>
+		<label for='theme-file' class='fileInputVisible theme' role='button'>Upload Theme File</label>
+		<input id='theme-file' type='file' class='fileInput' onchange='loadThemeFile()' style='color: #e0e0e0;'><br><br>
+		<font class='font-status' id='textAreaStatus'>If you use the Textarea, you have to Click off after you Paste your Theme for it to Update</font><br>
+		<textarea id='themeTextArea' onchange='updateClasses("textarea")'></textarea><br><br>
+		<button class='outputButton' onClick='updateClasses("file")'>Download Updated Theme</button>
+		<button class='outputButton' onClick='updateClasses("clipboard")'>Copy to Clipboard</button><br>
+		<div class="signature">압둘라흐만</div>
+	</div>
+<!--Nav Template Start-->
+</div>
+<script>
+async function loadChangesFileURL() {
+	const url = 'https://raw.githubusercontent.com/SyndiShanX/Update-Classes/main/Changes.txt';
+	let rawFile = await fetch(url);
+	let rawText = await rawFile.text();
+	document.getElementById('diffFileURL').innerHTML = rawText;
+}
+loadChangesFileURL();
+
+function loadThemeFile() {
+	const input = document.getElementsByClassName('fileInput')[0];
+	
+	if (typeof window.FileReader !== 'function') {
+		alert("The file API isn't supported on this browser yet");
+		return;
+	}
+	
+	if (!input) {
+		alert('Unable to find the fileInput element');
+	} else if (!input.files) {
+		alert("This browser doesn't seem to support the files property of file inputs");
+	} else {
+		const file = input.files[0];
+		const fr = new FileReader();
+		fr.onload = receivedText;
+		fr.readAsText(file);
+		document.getElementById('textAreaStatus').style.display = 'none';
+		document.getElementById('themeTextArea').style.display = 'none';
+		document.querySelectorAll('br')[9].remove();
+		document.querySelectorAll('br')[9].remove();
+		document.querySelectorAll('br')[9].remove();
+	}
+
+	function receivedText(e) {
+		let lines = e.target.result;
+	}
+}
+
+function updateClasses(outputMethod) {
+	let i = 0;
+	let rawText;
+
+	if (document.getElementsByClassName('fileInput')[1].files.length != 1) {
+		rawText = document.getElementById('diffFileURL').innerHTML;
+	} else {
+		rawText = document.getElementById('diffFile').innerHTML;
+	}
+
+	const classNum = rawText.split('\n').length - 1;
+	const changesText = rawText.split('\n');
+
+	let themeText;
+	if (outputMethod === 'textarea') {
+		themeText = document.getElementById('themeTextArea').value;
+	} else {
+		if (document.getElementById('themeTextArea').value !== '') {
+			themeText = document.getElementById('themeTextArea').value;
+		} else {
+			themeText = themeFile.result;
+		}
+	}
+
+	while (i < classNum) {
+		const class1 = changesText[i].split('\r')[0];
+		const class2 = changesText[i + 1].split('\r')[0];
+	
+		themeText = themeText.replaceAll(class1, class2);
+	
+		i = i + 2;
+	}
+	
+	if (outputMethod === 'textarea') {
+		document.getElementById('textAreaStatus').innerHTML = 'Updated!';
+		document.getElementById('themeTextArea').value = themeText;
+	} else if (outputMethod === 'file') {
+		const synOutput = document.createElement('a');
+		let outputName = 'Output.theme.css';
+		if (document.getElementById('themeTextArea').value !== '') {
+			document.getElementById('textAreaStatus').innerHTML = 'Updated!';
+			document.getElementById('themeTextArea').value = themeText;
+		}
+		const blob = new Blob([themeText], { type: 'text/plain' });
+		const url = URL.createObjectURL(blob);
+		synOutput.download = outputName;
+		synOutput.href = url;
+		synOutput.click();
+	} else if (outputMethod === 'clipboard') {
+		if (document.getElementById('themeTextArea').value !== '') {
+			document.getElementById('textAreaStatus').innerHTML = 'Updated!';
+			document.getElementById('themeTextArea').value = themeText;
+		}
+		navigator.clipboard.writeText(themeText);
+	}
+}
+</script>
+<script src="GlobalNavbar.js"></script>
+<script src="GlobalNavbarFixer.js"></script>
+</body>
+</html>

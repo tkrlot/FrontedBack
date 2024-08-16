@@ -116,7 +116,7 @@ function updateClasses(outputMethod) {
 	let i = 0;
 	let rawText;
 
-	if (document.getElementsByClassName('fileInput')[1].files.length != 1) {
+	if (document.getElementsByClassName('fileInput')[1]?.files.length !== 1) {
 		rawText = document.getElementById('diffFileURL').innerHTML;
 	} else {
 		rawText = document.getElementById('diffFile').innerHTML;
@@ -129,11 +129,7 @@ function updateClasses(outputMethod) {
 	if (outputMethod === 'textarea') {
 		themeText = document.getElementById('themeTextArea').value;
 	} else {
-		if (document.getElementById('themeTextArea').value !== '') {
-			themeText = document.getElementById('themeTextArea').value;
-		} else {
-			themeText = themeFile.result;
-		}
+		themeText = document.getElementById('themeTextArea').value || themeFile.result;
 	}
 
 	while (i < classNum) {
@@ -150,7 +146,7 @@ function updateClasses(outputMethod) {
 		document.getElementById('themeTextArea').value = themeText;
 	} else if (outputMethod === 'file') {
 		const synOutput = document.createElement('a');
-		let outputName = 'Output.theme.css';
+		const outputName = 'Output.theme.css';
 		if (document.getElementById('themeTextArea').value !== '') {
 			document.getElementById('textAreaStatus').innerHTML = 'Updated!';
 			document.getElementById('themeTextArea').value = themeText;

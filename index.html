@@ -97,10 +97,7 @@
 <div class='container'>
 	<br><br><br>
 	<h3 style='color: #fff;'>Either Upload your Theme File or Paste it into the Textarea</h3>
-	<h4 style='color: #fff;'>(Optional) Either Upload a Custom Diff File or Use the <a class="link" target="_blank" href="https://raw.githubusercontent.com/SyndiShanX/Update-Classes/main/Changes.txt">Included One</a></h4>
 	<br><br><br>
-	<label for='diff-file' class='fileInputVisible' role='button' style="margin-left: 5%;">Upload Diff File</label>
-	<input id='diff-file' type='file' class='fileInput' onchange='loadChangesFile()'style='color: #fff;'><br><br><br>
 	<font style='color: #fff; font: 18px Arial; font-weight: bold;' id='textAreaStatus'>If you use the Textarea, you have to Click off after you Paste your Theme for it to Update</font><br><br>
 	<textarea id='themeTextArea' onchange='updateClasses("textarea")'></textarea><br><br>
 	<button class='outputButton' onClick='updateClasses("file")'>Download Updated Theme</button>
@@ -118,34 +115,14 @@ async function loadChangesFileURL() {
 }
 loadChangesFileURL();
 
-function loadChangesFile() {
-	const input = document.getElementById('diff-file');
-	
-	if (typeof window.FileReader !== 'function') {
-		alert("The file API isn't supported on this browser yet");
-		return;
-	}
-	
-	if (!input) {
-		alert('Unable to find the fileInput element');
-	} else if (!input.files) {
-		alert("This browser doesn't seem to support the files property of file inputs");
-	} else {
-		const file = input.files[0];
-		const fr = new FileReader();
-		fr.onload = function () { document.getElementById('diffFile').textContent = fr.result; };
-		fr.readAsText(file);
-	}
-}
-
 function updateClasses(outputMethod) {
 	let i = 0;
 	let rawText;
 	
-	if (document.getElementById('diff-file').files.length != 1) {
-		rawText = document.getElementById('diffFileURL').innerHTML;
+	if (document.getElementById('diffFile').textContent.trim()) {
+		rawText = document.getElementById('diffFile').textContent;
 	} else {
-		rawText = document.getElementById('diffFile').innerHTML;
+		rawText = document.getElementById('diffFileURL').innerHTML;
 	}
 	
 	const classNum = rawText.split('\n').length - 1;
